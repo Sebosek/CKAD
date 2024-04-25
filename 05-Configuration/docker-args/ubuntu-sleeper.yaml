@@ -1,0 +1,15 @@
+# kubectl apply -f ./ubuntu-sleeper.yaml
+# kubectl get pods
+# kubectl get pod ubuntu-sleeper -o yaml > ./new-file.yaml
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ubuntu-sleeper-2
+spec:
+  containers:
+  - name: ubuntu
+    image: ubuntu
+    command: ["sleep"]
+    args: ["5000"]
+    # command: ["sleep", "5000"]

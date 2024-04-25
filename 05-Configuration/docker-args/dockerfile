@@ -1,0 +1,11 @@
+FROM python:3.6-alpine
+RUN pip install flask
+COPY . /opt/
+
+EXPOSE 8080
+WORKDIR /opt
+
+# Default entrypoint command, however, overridable in 'command' pod definition
+ENTRYPOINT ["python", "app.py"]
+# Docker arguments used by default, however, overridable on run in 'args' pod definition
+CMD ["--color", "red"]
