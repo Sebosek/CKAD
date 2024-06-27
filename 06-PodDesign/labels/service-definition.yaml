@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+
+metadata:
+  name: my-service
+
+spec:
+  selector:
+    # selector is used to match pods in replica set definition file
+    app: App1
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 9376

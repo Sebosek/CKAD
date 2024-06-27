@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+
+metadata:
+  name: simple-webapp
+  # labels for replica set itself
+  labels:
+    app: App1
+    function: Front-end
+
+spec:
+  replicas: 3
+  selector:
+    # selector to "find" proper pods for replica set
+    # mathinch to the labels for pod
+    matchLabels:
+      app: App1
+  teplate:
+    metadata:
+      # labels for pod
+      labels:
+        app: App1
+        function: Front-end
+    spec:
+      containers:
+      - name: simple-webapp
+        image: simple-webapp

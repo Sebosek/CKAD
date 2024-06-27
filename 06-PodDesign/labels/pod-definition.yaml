@@ -1,0 +1,25 @@
+# kubectl get pods --selector app=WebApp
+
+apiVersion: v1
+kind: Pod
+
+metadata:
+  name: simple-webapp
+  # labels are used for searching purposes
+  labels:
+    app: WebApp
+    function: Front-end
+    color: green
+    tier: default
+  # annotations are used for inform purposes
+  annotations:
+    buildVersion: 1.29
+    author: Sebastian
+    email: ja@sebastianbusek.cz
+
+spec:
+  containers:
+  - name: simple-webapp
+    image: simple-webapp
+    ports:
+    - containerPort: 8080
