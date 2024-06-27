@@ -1,0 +1,40 @@
+# readinessProbe probe is used to check if application is ready to serving requests
+apiVersion: v1
+kind: Pod
+metadata:
+  name: simple-webapp
+  labels:
+    name: simple-webapp
+spec:
+  containers:
+  - name: simple-webapp
+    image: simple-webapp
+    ports:
+      - containerPort: 8080
+    # Readiness probe can be 
+    # - a script
+    # - TCP socket listening
+    # - HTTP request
+    
+    ## HTTP
+    readinessProbe:
+      httpGet:
+        path: /api/ready
+        port: 8080
+      initialDelaySeconds: 10
+      periodSeconds: 5
+      # By default, there are 3 attempts for readiness probe and probe will stop
+      failureThreshold: 8
+    
+    ## TCP
+    # readinessProbe:
+    #   tcpSocket:
+    #     port: 3306
+
+    ## Command
+    # readinessProbe:
+    #   exec:
+    #     command:
+    #     - cat
+    #     - /app/is_ready
+      

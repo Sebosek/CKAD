@@ -1,3 +1,4 @@
+# Liveness probe is used to check if application is still up and running and able to serve requests
 apiVersion: v1
 kind: Pod
 metadata:
@@ -10,13 +11,13 @@ spec:
     image: simple-webapp
     ports:
       - containerPort: 8080
-    # Readiness probe can be 
+    # Liveness probe can be 
     # - a script
     # - TCP socket listening
     # - HTTP request
     
     ## HTTP
-    redinessProbe:
+    livenessProbe:
       httpGet:
         path: /api/ready
         port: 8080
@@ -26,14 +27,14 @@ spec:
       failureThreshold: 8
     
     ## TCP
-    # redinessProbe:
+    # livenessProbe:
     #   tcpSocket:
     #     port: 3306
 
     ## Command
-    # redinessProbe:
+    # livenessProbe:
     #   exec:
     #     command:
     #     - cat
-    #     - /app/is_ready
+    #     - /app/is_healthy
       
