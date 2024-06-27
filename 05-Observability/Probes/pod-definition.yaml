@@ -1,0 +1,39 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: simple-webapp
+  labels:
+    name: simple-webapp
+spec:
+  containers:
+  - name: simple-webapp
+    image: simple-webapp
+    ports:
+      - containerPort: 8080
+    # Readiness probe can be 
+    # - a script
+    # - TCP socket listening
+    # - HTTP request
+    
+    ## HTTP
+    redinessProbe:
+      httpGet:
+        path: /api/ready
+        port: 8080
+      initialDelaySeconds: 10
+      periodSeconds: 5
+      # By default, there are 3 attempts for readiness probe and probe will stop
+      failureThreshold: 8
+    
+    ## TCP
+    # redinessProbe:
+    #   tcpSocket:
+    #     port: 3306
+
+    ## Command
+    # redinessProbe:
+    #   exec:
+    #     command:
+    #     - cat
+    #     - /app/is_ready
+      
