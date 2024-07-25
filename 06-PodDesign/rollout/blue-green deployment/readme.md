@@ -1,0 +1,3 @@
+# Sample of how to use Blue/Green deployment strategy using Kubernetes primitives
+
+At first, we have `myapp-blue` deployment deployed in Kubernetes with a service definition pointing to this deployment using version selector. A new version is `myapp-green` with its own deployment. After deploy we can run tests on this version and if everything is good we can update the service to start pointing to the new deployment.
